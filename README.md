@@ -9,7 +9,7 @@ Decodes barcode types such as : EAN, CODE 128, CODE 39, EAN 8, UPC-A, UPC-C, I2o
 ### Demo
 
 ##### Web server
-Clone or download this repository and run demo/ws_demo.html. This demo uses two files: (1) dist/pdfbarcode.js and (2) worker file (pdf.worker.min.js) which is copied to the projects output folder. You must run this file (ws_demo.html) using a web server in order to take the advantage of http:// or https:// protocols to load workers, otherwise using file:// won't load the essential worker. If you don't have any web server installed, you may take a look at the alternative demo version.
+Clone or download this repository and run demo/ws_demo.html. This demo uses two files: (1) dist/pdf-barcode.js and (2) worker file (pdf.worker.min.js) which is copied to the projects output folder. You must run this file (ws_demo.html) using a web server in order to take the advantage of http:// or https:// protocols to load workers, otherwise using file:// won't load the essential worker. If you don't have any web server installed, you may take a look at the alternative demo version.
 
 ##### Alternative 
 After you clone this repository, on your local machine run demo/file_demo.html. This example uses minified versions of dependent libraries and its files. This offers you a version which can be tested with zero configurations compared to the previous one.
@@ -19,9 +19,9 @@ Live demo is available here.
 
 ### Get Started
 ##### Install by manual download: 
-Download files in dist folder and load pdfbarcode.js file as follows :
+Download files in dist folder and load pdf-barcode.js file as follows :
 ```html
- <script type="text/javascript" src="pdfbarcode.js"> </script>
+ <script type="text/javascript" src="pdf-barcode.js"> </script>
 ```
 **Important** : Make sure that the **pdf.worker.min.js** file is copied to your project's output folder. 
 Note that if you don't want to take care of pdf.worker.min.js separately as it was explained, follow the alternative install by manual download.
