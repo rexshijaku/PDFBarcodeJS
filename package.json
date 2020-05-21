@@ -1,0 +1,15 @@
+{
+    "name": "PDFBarcodeJS",
+    "version": "1.0.0",
+    "description": "PDF barcode-scanner entirely written in JavaScript.",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/rexshijaku/PDFBarcodeJS.git"
+    },
+    "author": "Rexhep Shijaku",
+    "license": "ISC",
+     "dependencies": {
+        "pdfjs-dist": "^2.3.200",
+        "quagga": "^0.12.1"
+    }
+}

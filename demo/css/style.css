@@ -1,0 +1,179 @@
+* {
+    cursor: pointer;
+}
+
+label {
+    font-size: 15px;
+    font-family: "Cabin Condensed", sans-serif;
+}
+
+.w-50 {
+    width: 50%;
+    margin-bottom: 4px;
+}
+
+.left {
+    width: 50%;
+    float: left;
+    margin-bottom: 20px;
+
+}
+
+.right {
+    width: 50%;
+    float: right;
+    margin-bottom: 20px;
+}
+
+#holder {
+    height: auto;
+    width: 80%;
+    text-align: center
+}
+
+@media (max-width: 800px) {
+    .left {
+        width: 100%;
+        float: left;
+        margin-bottom: 20px;
+
+    }
+
+    .right {
+        width: 100%;
+        float: right;
+        margin-bottom: 20px;
+    }
+
+    .setdescript {
+        float: left !important;
+        padding: 0px !important;
+        margin-bottom: 15px;
+        width: 100% !important;
+    }
+
+    #holder {
+        width: 100% !important;
+    }
+
+}
+
+.titles {
+    font-weight: bold;
+}
+
+.block {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.emptyspace {
+    height: 150px;
+    width: 100%;
+    background: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+.titleholder {
+    width: 50%;
+    margin: auto;
+    color: #333333;
+    text-align: left;
+    height: auto;
+    font-weight: bold;
+    font-size: 2.8em;
+    padding: 15px;
+    padding-top: 50px;
+
+    font-family: "Cabin Condensed", sans-serif;
+}
+
+.descriptionholder {
+    padding: 3px;
+    font-size: 0.4em;
+    margin-top: 10px;
+    font-family: "Cabin Condensed", sans-serif;
+    width: 100%;
+}
+
+.setdescript {
+    text-align: left;
+    width: 50%;
+    float: right;
+    font-size: 0.9em;
+    font-weight: bold;
+    font-family: "Cabin Condensed", sans-serif;
+    padding: 5px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.formholder {
+    height: 1200px;
+    width: 50%;
+    margin: auto;
+    padding: 25px;
+}
+
+.resultHolder {
+    margin-top: 12%;
+    margin-bottom: 30px;
+
+}
+
+.resultsTitle {
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "Cabin Condensed", sans-serif;
+}
+
+.btns {
+    margin: 15px;
+    float: right;
+}
+
+#summarydiv {
+    margin-right: 40px;
+    margin-top: 10px;
+    display: none;
+    padding: 10px;
+}
+
+.resultContainer {
+    padding: 15px;
+    padding-left: 0;
+}
+
+.resultPage {
+    height: 400px;
+    max-width: 100%;
+    border: 1px solid black;
+}
+
+.resultDiv {
+    width: 80%;
+    margin: auto;
+    word-break: break-all;
+    height: auto;
+    min-height: 70px;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+.footer {
+    text-align: center;
+    clear: both;
+    position: relative;
+    height: 40px;
+    margin-top: -200px;
+    width: 100%;
+    background: #333;
+    color: white;
+    font-family: "Cabin Condensed", sans-serif;
+    padding-top: 2px;
+    font-size: 15px;
+}
