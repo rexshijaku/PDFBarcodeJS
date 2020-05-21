@@ -1,4 +1,4 @@
-# pdfBarcodeJS
+# PDFBarcodeJS
 PDF barcode-scanner entirely written in JavaScript.
 
 ### Features
