@@ -200,7 +200,7 @@ The most important property of result object is *codes* property which stores al
      }
    ],
    "stats": {
-     "toalOnPatch": [
+     "totalOnPatch": [
        "x-small": 1,
        "small": 0,
        "medium": 1
@@ -211,7 +211,7 @@ The most important property of result object is *codes* property which stores al
    },
    "statsByPage": [
      1: {
-       "toalOnPatch": [
+       "totalOnPatch": [
          "x-small": 1
        ],
        "totalOnScale": [
@@ -219,7 +219,7 @@ The most important property of result object is *codes* property which stores al
        ]
      },
      2: {
-       "toalOnPatch": [
+       "totalOnPatch": [
          "medium": 1
        ],
        "totalOnScale": [
