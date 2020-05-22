@@ -222,9 +222,9 @@ var PDFBarcodeJs = (function () {
         else
             resultObj.codesByFormat[codeResult.format].push(codeResult.code);
 
-        resultObj.statsByPage[page].toalOnPatch[patch] += 1;
+        resultObj.statsByPage[page].totalOnPatch[patch] += 1;
         resultObj.statsByPage[page].totalOnScale[scale] += 1;
-        resultObj.stats.toalOnPatch[patch] += 1;
+        resultObj.stats.totalOnPatch[patch] += 1;
         resultObj.stats.totalOnScale[scale] += 1;
     }
 
@@ -292,13 +292,13 @@ var PDFBarcodeJs = (function () {
         result.codesByPage[currentPage] = [];
         result.codesByPageAndFormat[currentPage] = [];
 
-        result.statsByPage[currentPage] = {toalOnPatch: [], totalOnScale: []};
+        result.statsByPage[currentPage] = {totalOnPatch: [], totalOnScale: []};
 
         var patches_len = settings.patches.length;
         for (var i = 0; i < patches_len; i++) {
-            result.statsByPage[currentPage].toalOnPatch[settings.patches[i]] = 0;
-            if (!result.stats.toalOnPatch.hasOwnProperty(settings.patches[i]))
-                result.stats.toalOnPatch[settings.patches[i]] = 0;
+            result.statsByPage[currentPage].totalOnPatch[settings.patches[i]] = 0;
+            if (!result.stats.totalOnPatch.hasOwnProperty(settings.patches[i]))
+                result.stats.totalOnPatch[settings.patches[i]] = 0;
         }
 
         var scale_len = settings.scale.ordered.length;
@@ -356,7 +356,7 @@ var PDFBarcodeJs = (function () {
             codesByPage: [],
             codesByFormat: [],
             codesByPageAndFormat: [],
-            stats: {toalOnPatch: [], totalOnScale: []},
+            stats: {totalOnPatch: [], totalOnScale: []},
             statsByPage: [],
             success: false
         };
