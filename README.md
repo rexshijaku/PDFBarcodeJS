@@ -108,7 +108,7 @@ The efficiency and the accuracy of pdfBarcodeJS totally depends on the given con
  <input id="pdfentryfile" type="file" accept="application/pdf">
 ```
 ### How does it works?
-pdfBarcodeJS combines and extends the functionality of <a href="https://github.com/mozilla/pdf.js/">pdfjs</a> and <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> to introduce a tool which is able scan barcodes which are placed on PDFs. It fetches and reads pages via <a href="https://github.com/mozilla/pdf.js/">pdfjs</a> methods subsequently adds few processing steps and lastly passes them to <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> which decodes the codes which are present in pages. 
+PDFBarcodeJS combines and extends the functionality of <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> and <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> to introduce a tool which is able scan barcodes which are placed on PDFs. It fetches and reads pages via <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> methods subsequently adds few processing steps and lastly passes them to <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> which decodes the codes which are present in pages. 
 This library supports all barcode formats which are supported by <a href="https://github.com/serratus/quaggaJS">quaggaJS</a>. Depending on the number of barcodes you want to decode, the formats to read and extract, and the barcode sizes you have in your PDFs, you should find the optimal configuration for your PDF decoder which can be done using one of the demo version offered in this repo. After you find the neccessary configuration, just copy it and you are ready to paste it in your code and to start decode barcodes in PDFs.
 
 #### Config arguments
@@ -232,7 +232,7 @@ The most important property of result object is *codes* property which stores al
 ```
 
 ### Support
-For general questions about pdfBarcodeJS, tweet at @rexshijaku or write me an email on rexhepshijaku@gmail.com.
+For general questions about PDFBarcodeJS, tweet at @rexshijaku or write me an email on rexhepshijaku@gmail.com.
 To have a quick tutorial check the examples folder provided in the repository.
 
 ### Author
@@ -240,6 +240,9 @@ To have a quick tutorial check the examples folder provided in the repository.
  - Email : rexhepshijaku@gmail.com
  - Twitter : https://twitter.com/rexshijaku
  
+### Thank you
+Mozilla as the author of <a href="https://github.com/mozilla/pdf.js/">pdf.js</a>, Christoph Oberhofer <a href="mailto:it-ch.oberhofer@gmail.com">ch.oberhofer@gmail.com</a> for initiating <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> and Eric Blade <a href="mailto:it-blade.eric@gmail.com">blade.eric@gmail.com</a> with other contributors who are continuously improving it. 
+
 ### License
 MIT License
 
