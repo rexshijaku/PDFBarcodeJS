@@ -232,7 +232,7 @@
                         div.innerText = "No Barcodes found!";
                 }
 
-                var keyDescript = {toalOnPatch: "patch", totalOnScale: "scale"};
+                var keyDescript = {totalOnPatch: "patch", totalOnScale: "scale"};
                 for (var key in result.stats) {
                     for (var k in result.stats[key]) {
                         var str = result.stats[key][k] + " Barcodes found on " + k + " " + keyDescript[key];
