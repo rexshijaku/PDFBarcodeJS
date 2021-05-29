@@ -108,7 +108,7 @@ The efficiency and the accuracy of pdfBarcodeJS totally depends on the given con
  <input id="pdfentryfile" type="file" accept="application/pdf">
 ```
 #### Node usage
-Currently, the full functionality is only available through the browser. Only the pdf-file-based decoding is available. See an example for node <a href="https://github.com/rexshijaku/PDFBarcodeJS/blob/master/demo/node_demo.js">here</a>.
+Currently, the full functionality is only available through the browser. Only the pdf-file-based decoding is available. See an example for node <a href="https://github.com/rexshijaku/PDFBarcodeJS/blob/master/demo/node_demo/">here</a>.
 
 ### How does it works?
 PDFBarcodeJS combines and extends the functionality of <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> and <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> to introduce a tool which is able scan barcodes which are placed on PDFs. It fetches and reads pages via <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> methods subsequently adds few processing steps and lastly passes them to <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> which decodes the codes which are present in pages. 
