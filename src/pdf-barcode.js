@@ -1,8 +1,9 @@
-import * as PDFJS from 'pdfjs-dist/build/pdf';
-import Quagga from 'quagga';
+var Quagga = require('quagga');
+Quagga = 'default' in Quagga ? Quagga['default'] : Quagga;
+var PDFJS = require("pdfjs-dist/es5/build/pdf.js");
+const {createCanvas} = require('canvas')
 
-PDFJS.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
-
+PDFJS.GlobalWorkerOptions.workerSrc = './pdf.worker.min.js';
 
 var PDFBarcodeJs = (function () {
 
@@ -72,8 +73,7 @@ var PDFBarcodeJs = (function () {
         if (!settings.resultOpts.multiCodesInPage || settings.resultOpts.singleCodeInPage) {
             settings.resultOpts.maxCodesInPage = 1; // then it should be single
             settings.quagga.decoder.multiple = false;
-        }
-        else
+        } else
             settings.quagga.decoder.multiple = true; // if not single then set multi so quagga can decode multiple at one time
 
         if (settings.scale.once) {
@@ -82,8 +82,7 @@ var PDFBarcodeJs = (function () {
             settings.scale.stop = val;
             settings.scale.step = 1.0;
             settings.scale.ordered = [val];
-        }
-        else {
+        } else {
             settings.scale.ordered = [];
             var i = settings.scale.start;
             for (i = settings.scale.start; i <= settings.scale.stop; i += settings.scale.step) {
@@ -95,7 +94,7 @@ var PDFBarcodeJs = (function () {
 
     function getCanvas(viewport) {
 
-        var canvas = document.createElement('canvas');
+        const canvas = createCanvas()
         canvas.width = viewport.width;
         canvas.height = viewport.height;
         return canvas;
@@ -108,20 +107,20 @@ var PDFBarcodeJs = (function () {
         var imageData = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height);
 
         if (scaled === 1) {
-            var imgToBePrinted = document.createElement('canvas');
+            const imgToBePrinted = createCanvas();
             imgToBePrinted.width = canvas.width;
             imgToBePrinted.height = canvas.height;
             imgToBePrinted.getContext('2d').putImageData(imageData, 0, 0);
             result.printImg = imgToBePrinted;
         }
 
-        var imgToProcess = document.createElement('canvas');
+        var imgToProcess = createCanvas();
         imgToProcess.width = canvas.width;
         imgToProcess.height = canvas.height;
         var context2 = imgToProcess.getContext('2d');
         context2.putImageData(imageData, 0, 0);
 
-        if(noisify) {
+        if (noisify) {
             for (var y = 0; y < canvas.height; y += 60) { //todo 60 worked good, but should be related to img sizee
                 var uint = context2.getImageData(0, y, canvas.width, 1);
                 var pix = uint.data;
@@ -157,6 +156,10 @@ var PDFBarcodeJs = (function () {
         settings.inputStream.size = pageAsImg.width;
         settings.locator.patchSize = patchSize;
         settings.src = pageAsImg.toDataURL("image/jpeg");
+        if (typeof window === 'undefined') { // in nodejs
+            settings.debug = false;
+            settings.numOfWorkers = 0;
+        }
         return settings;
     }
 
@@ -168,13 +171,11 @@ var PDFBarcodeJs = (function () {
                 if (env === 'DEV')
                     console.log("PAGE_" + currentPage + " has results when scaled " + scaled + " times with " + patch + " patch.");
                 addResult(result.codeResult, document_barcode, currentPage, patch, scaled);
-            }
-            else {
+            } else {
                 if (env === 'DEV')
                     console.log("PAGE_" + currentPage + " when scaled " + scaled + " times with " + patch + " patch has no results.");
             }
-        }
-        else  // when multi result obj of quagga returns array
+        } else  // when multi result obj of quagga returns array
         {
             var hasResult = false;
             if (result) {
@@ -227,9 +228,9 @@ var PDFBarcodeJs = (function () {
         else
             resultObj.codesByFormat[codeResult.format].push(codeResult.code);
 
-        resultObj.statsByPage[page].toalOnPatch[patch] += 1;
+        resultObj.statsByPage[page].totalOnPatch[patch] += 1;
         resultObj.statsByPage[page].totalOnScale[scale] += 1;
-        resultObj.stats.toalOnPatch[patch] += 1;
+        resultObj.stats.totalOnPatch[patch] += 1;
         resultObj.stats.totalOnScale[scale] += 1;
     }
 
@@ -297,13 +298,13 @@ var PDFBarcodeJs = (function () {
         result.codesByPage[currentPage] = [];
         result.codesByPageAndFormat[currentPage] = [];
 
-        result.statsByPage[currentPage] = {toalOnPatch: [], totalOnScale: []};
+        result.statsByPage[currentPage] = {totalOnPatch: [], totalOnScale: []};
 
         var patches_len = settings.patches.length;
         for (var i = 0; i < patches_len; i++) {
-            result.statsByPage[currentPage].toalOnPatch[settings.patches[i]] = 0;
-            if (!result.stats.toalOnPatch.hasOwnProperty(settings.patches[i]))
-                result.stats.toalOnPatch[settings.patches[i]] = 0;
+            result.statsByPage[currentPage].totalOnPatch[settings.patches[i]] = 0;
+            if (!result.stats.totalOnPatch.hasOwnProperty(settings.patches[i]))
+                result.stats.totalOnPatch[settings.patches[i]] = 0;
         }
 
         var scale_len = settings.scale.ordered.length;
@@ -361,7 +362,7 @@ var PDFBarcodeJs = (function () {
             codesByPage: [],
             codesByFormat: [],
             codesByPageAndFormat: [],
-            stats: {toalOnPatch: [], totalOnScale: []},
+            stats: {totalOnPatch: [], totalOnScale: []},
             statsByPage: [],
             success: false
         };
@@ -375,7 +376,11 @@ var PDFBarcodeJs = (function () {
         var currentPage = 1;
         var quagaconfigs = copyobj(settings.quagga);
 
-        var url = URL.createObjectURL(params.input.files[0]);
+        var url = '';
+        if (typeof window === 'undefined')
+            url = params.input;
+        else
+            url = URL.createObjectURL(params.input.files[0]);
         PDFJS.disableWorker = true; // due to CORS
         PDFJS.getDocument(url).promise.then(function (pdf) {
 
@@ -386,8 +391,7 @@ var PDFBarcodeJs = (function () {
                         message: "Given page is out of range! Valid page range is (1-" + pdf.numPages + ")"
                     });   // PDF loading error
                     return false;
-                }
-                else
+                } else
                     currentPage = params.pageNr;
             }
 
@@ -422,14 +426,12 @@ var PDFBarcodeJs = (function () {
                                                 postQuaggaDecode
                                             );
                                             return false;
-                                        }
-                                        else
+                                        } else
                                             return resolve({
                                                 isDone: false,
                                                 message: "PAGE_" + currentPage + " | Max number of tries (with valid patches) to find a barcode on page was reached!"
                                             });
-                                    }
-                                    else
+                                    } else
                                         return resolve({
                                             isDone: true,
                                             patch: validPatches[patch_attempts],
@@ -477,8 +479,7 @@ var PDFBarcodeJs = (function () {
                                 settings.scale.ordered = shuffle2Optimize(settings.scale.ordered, scaled, 'Scale');
                             }
                             break;
-                        }
-                        else {
+                        } else {
                             if (env === 'DEV')
                                 console.log(result);
                         }
@@ -487,8 +488,7 @@ var PDFBarcodeJs = (function () {
                     if (!params.singlePage && currentPage < pdf.numPages) {
                         currentPage++;
                         getPage();
-                    }
-                    else
+                    } else
                         params.final_call_back(parseResult(finalResults, params));
                 });
             }
@@ -616,5 +616,7 @@ var PDFBarcodeJs = (function () {
     };
 })();
 
-export default PDFBarcodeJs;
-export { PDFJS };
+module.exports = {
+    PDFBarcodeJs: PDFBarcodeJs,
+    PDFJS: PDFJS
+};

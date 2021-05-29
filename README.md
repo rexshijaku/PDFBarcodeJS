@@ -29,16 +29,16 @@ Note that if you don't want to take care of pdf.worker.min.js separately as it w
 ##### Alternative install by manual download: 
 Download minified files located in demo/js/file_demo_only and include them just in your assets directory which is targeted by your scripts as it was described in file_demo.html.
 
-##### Node
+##### NPM
 You can also install it from npm by running the following command:
 ```html
 npm install pdf-barcode
 ```
 include it as:
 ```js
-import PDFBarcodeJs from 'pdf-barcode';  // ES6
+import { PDFBarcodeJs }  from 'pdf-barcode';  // ES6
 
-const PDFBarcodeJs = require('pdf-barcode').default; // Common JS
+const { PDFBarcodeJs } = require('pdf-barcode'); // Common JS
 ```
 
 ##### Webpack and other building tools
@@ -53,8 +53,7 @@ Alternatively, you can use pdf.worker.min.js from an external CDN:
 ### Usage
 
 #### Set up the optimal configuration
-The efficiency and the accuracy of pdfBarcodeJS totally depends on the given configuration. By default it uses a configuration which worked best during development and testing. You should modify and optimize this configuration to fit to your barcode formats and sizes. Use any of provided demos above to construct configuration parameters or write them manually. There are four steps you need to untertake to decode a pdf: 
-
+The efficiency and the accuracy of pdfBarcodeJS totally depends on the given configuration. By default it uses a configuration which worked best during development and testing. You should modify and optimize this configuration to fit to your barcode formats and sizes. Use any of provided demos above to construct configuration parameters or write them manually. There are four steps you need to untertake to decode a pdf:
 ##### JavaScript code:
 ### 
 ```js
@@ -87,6 +86,7 @@ The efficiency and the accuracy of pdfBarcodeJS totally depends on the given con
  }
 ```
 
+
 ##### Full-Document decode: 
 ##
 ```js
@@ -107,6 +107,9 @@ The efficiency and the accuracy of pdfBarcodeJS totally depends on the given con
 ```html
  <input id="pdfentryfile" type="file" accept="application/pdf">
 ```
+#### Node usage
+Currently, the full functionality is only available through the browser. Only the pdf-file-based decoding is available. See an example for node <a href="https://github.com/rexshijaku/PDFBarcodeJS/blob/master/demo/node_demo.js">here</a>.
+
 ### How does it works?
 PDFBarcodeJS combines and extends the functionality of <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> and <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> to introduce a tool which is able scan barcodes which are placed on PDFs. It fetches and reads pages via <a href="https://github.com/mozilla/pdf.js/">pdf.js</a> methods subsequently adds few processing steps and lastly passes them to <a href="https://github.com/serratus/quaggaJS">quaggaJS</a> which decodes the codes which are present in pages. 
 This library supports all barcode formats which are supported by <a href="https://github.com/serratus/quaggaJS">quaggaJS</a>. Depending on the number of barcodes you want to decode, the formats to read and extract, and the barcode sizes you have in your PDFs, you should find the optimal configuration for your PDF decoder which can be done using one of the demo version offered in this repo. After you find the neccessary configuration, just copy it and you are ready to paste it in your code and to start decode barcodes in PDFs.
