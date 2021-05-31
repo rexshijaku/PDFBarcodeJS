@@ -379,8 +379,10 @@ var PDFBarcodeJs = (function () {
         var url = '';
         if (typeof window === 'undefined')
             url = params.input;
-        else
+        else if (typeof params.input === 'object' && params.input !== null)
             url = URL.createObjectURL(params.input.files[0]);
+        else
+            url = params.input;
         PDFJS.disableWorker = true; // due to CORS
         PDFJS.getDocument(url).promise.then(function (pdf) {
 
