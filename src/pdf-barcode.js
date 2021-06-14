@@ -164,12 +164,13 @@ var PDFBarcodeJs = (function () {
     }
 
     function getDocumentUrl(params) {
-        if (typeof window === 'undefined')
+        if (typeof window === 'undefined') {
             return params.input;
-        else if (typeof params.input === 'object' && params.input !== null)
+        } else if (typeof params.input === 'object' && params.input !== null && params.input.files !== undefined) {
             return URL.createObjectURL(params.input.files[0]);
-        else
+        } else {
             return params.input;
+        }
     }
 
     function setResult(result, document_barcode, currentPage, patch, scaled, settings) {
