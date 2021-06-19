@@ -370,7 +370,11 @@ var PDFBarcodeJs = (function () {
         var currentPage = 1;
         var quagaconfigs = copyobj(settings.quagga);
 
-        var url = URL.createObjectURL(params.input.files[0]);
+        var url = '';
+        if (typeof params.input === 'object' && params.input !== null && params.input.files !== undefined) // for uploaded files only
+            url = URL.createObjectURL(params.input.files[0]);
+        else
+            url = params.input; // for base64 strings only
         PDFJS.disableWorker = true; // due to CORS
         PDFJS.getDocument(url).promise.then(function (pdf) {
 
