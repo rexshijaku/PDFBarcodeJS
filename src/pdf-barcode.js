@@ -163,6 +163,16 @@ var PDFBarcodeJs = (function () {
         return settings;
     }
 
+    function getDocumentUrl(params) {
+        if (typeof window === 'undefined') {
+            return params.input;
+        } else if (typeof params.input === 'object' && params.input !== null && params.input.files !== undefined) {
+            return URL.createObjectURL(params.input.files[0]);
+        } else {
+            return params.input;
+        }
+    }
+
     function setResult(result, document_barcode, currentPage, patch, scaled, settings) {
 
         if (settings.resultOpts.singleCodeInPage) { // when single result  quagga returns obj only
@@ -376,15 +386,8 @@ var PDFBarcodeJs = (function () {
         var currentPage = 1;
         var quagaconfigs = copyobj(settings.quagga);
 
-        var url = '';
-        if (typeof window === 'undefined')
-            url = params.input;
-        else if (typeof params.input === 'object' && params.input !== null)
-            url = URL.createObjectURL(params.input.files[0]);
-        else
-            url = params.input;
         PDFJS.disableWorker = true; // due to CORS
-        PDFJS.getDocument(url).promise.then(function (pdf) {
+        PDFJS.getDocument(getDocumentUrl(params)).promise.then(function (pdf) {
 
             if (params.singlePage) {
                 if (!pageInRange(pdf, params.pageNr)) {
