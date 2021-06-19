@@ -1,6 +1,6 @@
 var Quagga = require('quagga');
 Quagga = 'default' in Quagga ? Quagga['default'] : Quagga;
-var PDFJS = require("pdfjs-dist/es5/build/pdf.js");
+var PDFJS = require("pdfjs-dist/legacy/build/pdf.js");
 const {createCanvas} = require('canvas')
 
 PDFJS.GlobalWorkerOptions.workerSrc = './pdf.worker.min.js';
