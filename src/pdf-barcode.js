@@ -328,6 +328,7 @@ var PDFBarcodeJs = (function () {
     function parseResult(result, params) {
 
         result.success = true;
+        result.input = params.input;
         if (params.singlePage) {
             delete result.codesByPage;
             delete result.statsByPage;
