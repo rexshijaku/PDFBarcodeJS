@@ -1,7 +1,8 @@
 var Quagga = require('quagga');
 Quagga = 'default' in Quagga ? Quagga['default'] : Quagga;
 var PDFJS = require("pdfjs-dist/legacy/build/pdf.js");
-const {createCanvas} = require('canvas')
+const {createCanvas} = require('canvas');
+var path = require('path');
 
 PDFJS.GlobalWorkerOptions.workerSrc = './pdf.worker.min.js';
 
@@ -387,7 +388,10 @@ var PDFBarcodeJs = (function () {
         var quagaconfigs = copyobj(settings.quagga);
 
         PDFJS.disableWorker = true; // due to CORS
-        PDFJS.getDocument(getDocumentUrl(params)).promise.then(function (pdf) {
+        PDFJS.getDocument({
+                url: getDocumentUrl(params),
+                standardFontDataUrl: path.join(__dirname, '../../node_modules/pdfjs-dist/standard_fonts/')
+            }).promise.then(function (pdf) {
 
             if (params.singlePage) {
                 if (!pageInRange(pdf, params.pageNr)) {
